@@ -30,7 +30,7 @@ function ProjectPreviewGrid(props) {
               }
             }}
           >
-            Ver más <br />
+            Ver todos <br />
             {props.title}
           </span>
         )}
