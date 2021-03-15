@@ -16,7 +16,6 @@ module.exports = {
       resolve: "gatsby-source-sanity",
       options: {
         ...clientConfig.sanity,
-        token,
         useCdn: true,
         watchMode: !isProd,
         overlayDrafts: !isProd && token

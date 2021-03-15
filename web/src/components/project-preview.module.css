@@ -5,7 +5,7 @@
 }
 
 .title {
-  composes: responsiveTitle1 from './typography.module.css';
+  composes: responsiveTitle1 from "./typography.module.css";
 }
 
 .leadMediaThumb {
@@ -32,6 +32,11 @@
 }
 
 .excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
   @nest & p {
     margin: 0.5em 0;
   }

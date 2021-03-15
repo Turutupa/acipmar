@@ -11,11 +11,7 @@ import { responsiveTitle1 } from "../components/typography.module.css";
 
 export const query = graphql`
   query ArchivePageQuery {
-    projects: allSanitySampleProject(
-      limit: 12
-      sort: { fields: [publishedAt], order: DESC }
-      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
-    ) {
+    projects: allSanityBusiness(limit: 12, filter: { slug: { current: { ne: null } } }) {
       edges {
         node {
           id
