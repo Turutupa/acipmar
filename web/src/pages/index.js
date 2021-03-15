@@ -13,6 +13,9 @@ import SEO from "../components/seo";
 import Layout from "../containers/layout";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import FuzzyPicker from "react-fuzzy-picker";
+import "../styles/fuzzy-picker.css";
+import styles from "../styles/inputs-wrapper.module.css";
 
 const animatedComponents = makeAnimated();
 
@@ -65,23 +68,20 @@ export const query = graphql`
 
 const IndexPage = props => {
   const { data, errors } = props;
-  const [selectedCategories, setSelectedCategories] = React.useState(null);
+  const [selectedCategory, setSelectedCategory] = React.useState(null);
 
   React.useEffect(() => {
     try {
       const locationSearch = decodeURI(window.location.search);
-      const [query, params] = locationSearch.split("=");
+      const [urlQuery, params] = locationSearch.split("=");
 
       if (!params) return;
-      if (query !== "?filter") return;
-      const filters = params.split(",").map(filter => {
-        return {
-          value: filter.toLowerCase(),
-          label: filter.slice(0, 1).toUpperCase() + filter.slice(1).toLowerCase()
-        };
-      });
+      if (urlQuery !== "?filter") return;
 
-      setSelectedCategories(filters);
+      setSelectedCategory({
+        value: params,
+        label: params[0].toUpperCase() + params.slice(1).toLowerCase()
+      });
     } catch (e) {
       console.error(e);
     }
@@ -96,18 +96,21 @@ const IndexPage = props => {
   }
 
   const site = (data || {}).site;
-  const projectNodes = (data || {}).projects
+  const businesses = (data || {}).projects
     ? mapEdgesToNodes(data.projects)
         .filter(filterOutDocsWithoutSlugs)
         .filter(filterOutDocsPublishedInTheFuture)
     : [];
 
-  const businessesByCategories = groupBusinessesByCategories(projectNodes);
+  const businessesByCategories = groupBusinessesByCategories(businesses);
   const businessCategories = Object.keys(businessesByCategories);
+  // values for the select input
   const selectValues = businessCategories.map(category => ({
     value: category.toLowerCase(),
     label: category
   }));
+  // values for the fuzzy picker
+  const fuzzyValues = businesses.map(business => business.title);
 
   if (!site) {
     throw new Error(
@@ -116,24 +119,60 @@ const IndexPage = props => {
   }
 
   return (
-    <Layout>
+    <Layout clearFilters={() => setSelectedCategory(null)}>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <Container>
-        <h1>Bienvenidos a {site.title}</h1>
+        {selectedCategory ? <h1>{selectedCategory.label}</h1> : <h1>Bienvenidos a {site.title}</h1>}
 
-        <Select
-          isClearable
-          value={selectedCategories}
-          closeMenuOnSelect={true}
-          components={animatedComponents}
-          options={selectValues}
-          onChange={selected => {
-            setSelectedCategories(selected);
-          }}
-        />
+        <div className={styles.inputsWrapper}>
+          <div
+            style={{
+              width: "100%",
+              marginRight: "10px",
+              marginBottom: "20px",
+              position: "relative"
+            }}
+          >
+            <label>Categorías</label>
+            <Select
+              isClearable
+              value={selectedCategory}
+              closeMenuOnSelect={true}
+              components={animatedComponents}
+              options={selectValues}
+              placeholder="Seleccionar categoría"
+              onChange={selected => {
+                setSelectedCategory(selected);
+              }}
+            />
+          </div>
+
+          <div style={{ width: "100%", position: "relative" }}>
+            <label>Buscar por nombre</label>
+
+            <FuzzyPicker
+              label="Buscar por nombre"
+              isOpen={true}
+              autoCloseOnEnter
+              onChange={choice => {
+                try {
+                  businesses.forEach(business => {
+                    if (business.title === choice) {
+                      window.location = `/business/${business.slug.current}`;
+                    }
+                  });
+                } catch (e) {
+                  console.error(e);
+                }
+              }}
+              items={fuzzyValues}
+              placeholder="Buscar negocio"
+            />
+          </div>
+        </div>
 
         {businessesByCategories &&
-          renderBusinesessByCategory(businessesByCategories, selectedCategories)}
+          renderBusinesessByCategory(businessesByCategories, selectedCategory)}
       </Container>
     </Layout>
   );
@@ -151,7 +190,13 @@ const IndexPage = props => {
           key={category}
           title={category}
           nodes={businessesByCategories[category]}
-          browseMoreHref="/archive/"
+          currentCategory={selectedCategory}
+          browseMoreHref={() =>
+            setSelectedCategory({
+              value: category,
+              label: category[0].toUpperCase() + category.slice(1).toLowerCase()
+            })
+          }
         />
       ));
   }

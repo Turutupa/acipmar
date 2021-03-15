@@ -1,0 +1,68 @@
+.fuzzy-picker-background {
+  position: relative;
+}
+
+.fuzzy-picker-label {
+  display: none;
+}
+
+.fuzzy-picker-instructions {
+  display: none;
+}
+
+.fuzzy-input {
+  box-sizing: border-box;
+  padding: 2px 8px;
+  background-color: hsl(0, 0%, 100%);
+  border-color: hsl(0, 0%, 80%);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  cursor: default;
+  min-height: 38px;
+  outline: none;
+  -webkit-font-smoothing: antialiased;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.fuzzy-input:focus {
+  box-shadow: 0 0 0 1.7px #2684ff;
+  border: none;
+}
+
+.fuzzy-items {
+  position: absolute;
+}
+
+.fuzzy-items:not(:empty) {
+  position: absolute;
+  list-style: none;
+  background-color: white;
+  border-style: solid;
+  border-width: 1px;
+  background-color: hsl(0, 0%, 100%);
+  border-color: hsl(0, 0%, 80%);
+  border-radius: 4px;
+  padding-left: 0;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 8px;
+  z-index: 99;
+}
+
+.fuzzy-items li {
+  width: 100%;
+  padding: 8px 12px;
+  width: 100%;
+  user-select: none;
+  cursor: pointer;
+}
+
+.fuzzy-items li:hover {
+  background-color: #deebff;
+}
+
+.fuzzy-items li.selected {
+  background-color: #deebff;
+}

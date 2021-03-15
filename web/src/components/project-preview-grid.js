@@ -5,22 +5,34 @@ import ProjectPreview from "./project-preview";
 import styles from "./project-preview-grid.module.css";
 
 function ProjectPreviewGrid(props) {
-  const numberOfPreviewedItems = 5;
+  const numberOfPreviewedItems = 3;
+  const showAll = props.currentCategory && props.currentCategory.label === props.title;
 
   return (
     <div className={styles.root}>
-      {props.title && <h2 className={styles.headline}>{props.title}</h2>}
+      {props.title && <h1 className={styles.headline}>{props.title}</h1>}
       <ul className={styles.grid}>
         {props.nodes &&
-          props.nodes.slice(0, numberOfPreviewedItems).map(node => (
+          props.nodes.slice(0, showAll ? props.nodes.length : numberOfPreviewedItems).map(node => (
             <li key={node.id}>
               <ProjectPreview {...node} />
             </li>
           ))}
-        {props.nodes.length > numberOfPreviewedItems && props.title && (
-          <Link className={styles.browseMoreNav} to={props.browseMoreHref}>
-            Ver más {props.title}
-          </Link>
+        {props.nodes.length > numberOfPreviewedItems && props.title && !props.currentCategory && (
+          <span
+            className={styles.browseMoreNav}
+            onClick={() => {
+              try {
+                props.browseMoreHref();
+                window.scrollTo(0, 0);
+              } catch (e) {
+                console.error(e);
+              }
+            }}
+          >
+            Ver más <br />
+            {props.title}
+          </span>
         )}
       </ul>
     </div>

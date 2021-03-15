@@ -27,27 +27,38 @@
   }
 
   @media (--media-min-medium) {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 
 .browseMoreNav {
   text-align: right;
   font-weight: bolder;
+  min-height: 75px;
   height: 100%;
   width: 100%;
   border-radius: 10px;
-  background-color: #d3d3d3;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
   text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s linear;
+  background-color: #dddddd;
 
   @media (hover: hover) {
-    filter: brightness(1.1);
     @nest &:hover {
       color: var(--color-accent);
     }
   }
+
+  @media (--media-min-small) {
+    background-color: white;
+  }
+}
+
+.browseMoreNav:hover {
+  filter: brightness(1.1);
+  background-color: #dddddd;
 }

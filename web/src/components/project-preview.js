@@ -26,7 +26,7 @@ function ProjectPreview(props) {
       <h3 className={cn(responsiveTitle3, styles.title)}>{props.title}</h3>
       {props._rawExcerpt && (
         <div className={styles.excerpt}>
-          <BlockText blocks={props._rawExcerpt} />
+          <p>{props._rawExcerpt}</p>
         </div>
       )}
     </Link>

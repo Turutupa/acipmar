@@ -51,9 +51,9 @@ export function groupBusinessesByCategories(data) {
         categoriesMap[categoryTitle] = [...categoriesMap[categoryTitle], business];
       } else {
         categoriesMap[categoryTitle] = [business];
-        // categoriesMap[categoryTitle] = [...categoriesMap[categoryTitle], business];
-        // categoriesMap[categoryTitle] = [...categoriesMap[categoryTitle], business];
-        // categoriesMap[categoryTitle] = [...categoriesMap[categoryTitle], business];
+        categoriesMap[categoryTitle] = [...categoriesMap[categoryTitle], business];
+        categoriesMap[categoryTitle] = [...categoriesMap[categoryTitle], business];
+        categoriesMap[categoryTitle] = [...categoriesMap[categoryTitle], business];
         // categoriesMap[categoryTitle] = [...categoriesMap[categoryTitle], business];
         // categoriesMap[categoryTitle] = [...categoriesMap[categoryTitle], business];
         // categoriesMap[categoryTitle] = [...categoriesMap[categoryTitle], business];

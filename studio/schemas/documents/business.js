@@ -22,7 +22,7 @@ export default {
       title: "URL del Negocio",
       type: "slug",
       description:
-        "Cuando clickas en el negocio, es la ruta que aparecerá en el buscador. No usar espacios, usar guiones en su lugar. Por ejemplo, acipmar.com/negocio/URL-DEL-NEGOCIO",
+        "Clickar en GENERATE. Cuando clickas en el negocio, es la ruta que aparecerá en el buscador. No usar espacios, usar guiones en su lugar. Por ejemplo, acipmar.com/negocio/URL-DEL-NEGOCIO",
       options: {
         source: "title",
         maxLength: 96
@@ -51,7 +51,7 @@ export default {
     {
       name: "excerpt",
       title: "Breve descripción",
-      type: "simplePortableText",
+      type: "string",
       description:
         "Es la descripción que aparecerá debajo de la imágen del negocio en la primera pág de bienvenida"
     },
