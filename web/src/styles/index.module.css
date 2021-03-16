@@ -1,0 +1,39 @@
+.inputsWrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 25px;
+}
+
+@media (min-width: 768px) {
+  .inputsWrapper {
+    flex-direction: row;
+  }
+}
+
+.selectWrapper {
+  width: 100%;
+  margin-right: 10px;
+  position: relative;
+}
+
+.searchWrapper {
+  width: 100%;
+  position: relative;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.showAllButton {
+  box-sizing: border-box;
+  cursor: pointer;
+  background-color: #f9558f;
+  border-radius: 4px;
+  color: white;
+  padding: 10px 15px;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+}

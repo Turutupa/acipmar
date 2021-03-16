@@ -39,7 +39,6 @@ export const query = graphql`
         asset {
           _id
         }
-        alt
       }
       title
       slug {

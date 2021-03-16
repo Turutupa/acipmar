@@ -5,8 +5,8 @@ import ProjectPreview from "./project-preview";
 import styles from "./project-preview-grid.module.css";
 
 function ProjectPreviewGrid(props) {
+  const { showAll } = props;
   const numberOfPreviewedItems = 3;
-  const showAll = props.currentCategory && props.currentCategory.label === props.title;
 
   return (
     <div className={styles.root}>
@@ -18,13 +18,12 @@ function ProjectPreviewGrid(props) {
               <ProjectPreview {...node} />
             </li>
           ))}
-        {props.nodes.length > numberOfPreviewedItems && props.title && !props.currentCategory && (
+        {props.nodes.length > 0 && !showAll && (
           <span
             className={styles.browseMoreNav}
             onClick={() => {
               try {
                 props.browseMoreHref();
-                window.scrollTo(0, 0);
               } catch (e) {
                 console.error(e);
               }

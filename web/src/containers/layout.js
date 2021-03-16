@@ -30,11 +30,12 @@ function LayoutContainer(props) {
         return (
           <Layout
             {...props}
+            header={props.header}
             showNav={showNav}
             siteTitle={data.site.title}
             onHideNav={handleHideNav}
             onShowNav={handleShowNav}
-            clearFilters={props.clearFilters}
+            navigate={props.navigate}
           />
         );
       }}
