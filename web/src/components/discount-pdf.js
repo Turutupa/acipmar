@@ -103,33 +103,37 @@ const styles = StyleSheet.create({
 
 // Create Document Component
 const DiscountPDF = props => {
-  const { businessName, location, phoneNumber, discount } = props;
+  try {
+    const { businessName, location, phoneNumber, discount } = props;
 
-  return (
-    <Document>
-      <Page size="A4" style={styles.page}>
-        <Image src={Logo} source={Logo} style={styles.image} />
+    return (
+      <Document>
+        <Page size="A4" style={styles.page}>
+          <Image src={Logo} source={Logo} style={styles.image} />
 
-        <View style={styles.body}>
-          <Text style={styles.businessName}>{businessName}</Text>
-          <Text style={styles.location}>{location}</Text>
-          <Text style={styles.phoneNumber}>Teléfono: {phoneNumber}</Text>
-          <Text style={styles.discount}>{discount.toUpperCase()}</Text>
-        </View>
+          <View style={styles.body}>
+            <Text style={styles.businessName}>{businessName}</Text>
+            <Text style={styles.location}>{location}</Text>
+            <Text style={styles.phoneNumber}>Teléfono: {phoneNumber}</Text>
+            <Text style={styles.discount}>{discount.toUpperCase()}</Text>
+          </View>
 
-        <View style={styles.section}>
-          <Text style={styles.header}>BONO FÍSICO</Text>
-          <Text style={styles.subheader}>
-            Presenta el bono en el establecimiento para aplicar el descuento
-          </Text>
-        </View>
+          <View style={styles.section}>
+            <Text style={styles.header}>BONO FÍSICO</Text>
+            <Text style={styles.subheader}>
+              Presenta el bono en el establecimiento para aplicar el descuento
+            </Text>
+          </View>
 
-        <View style={styles.footer}>
-          <Text style={styles.footerText}>Válido para un único uso</Text>
-        </View>
-      </Page>
-    </Document>
-  );
+          <View style={styles.footer}>
+            <Text style={styles.footerText}>Válido para un único uso</Text>
+          </View>
+        </Page>
+      </Document>
+    );
+  } catch (e) {
+    return <div>Oops! Something went wrong!</div>;
+  }
 };
 
 export default DiscountPDF;

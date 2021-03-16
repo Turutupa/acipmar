@@ -22,7 +22,7 @@ export default {
       title: "URL del Negocio",
       type: "slug",
       description:
-        "Clickar en GENERATE. Cuando clickas en el negocio, es la ruta que aparecerá en el buscador. No usar espacios, usar guiones en su lugar. Por ejemplo, acipmar.com/negocio/URL-DEL-NEGOCIO",
+        "Clickar en GENERATE. Es la ruta que aparecerá en el buscador. Por ejemplo, acipmar.com/negocio/URL-DEL-NEGOCIO",
       options: {
         source: "title",
         maxLength: 96
@@ -61,6 +61,13 @@ export default {
       type: "projectPortableText",
       description:
         "Descripción del negocio. No hay límite de carácteres. Es el contenido principal que aparecerá en la pág del propio negocio"
+    },
+    {
+      name: "discount",
+      title: "Mensaje de descuento",
+      type: "string",
+      description:
+        "Es el mensaje que aparecerá en el cupón de descuento. Ejemplo: 50% descuento en la compra de la segunda entrada de cine!"
     },
     {
       name: "facebook",

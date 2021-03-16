@@ -41,6 +41,38 @@ function Project(props) {
     discount
   } = props;
 
+  const [downloadLink, setDownloadLink] = React.useState(null);
+
+  React.useEffect(() => {
+    try {
+      setDownloadLink(
+        <PDFDownloadLink
+          document={
+            <DiscountPDF
+              discount={discount}
+              businessName={title}
+              location={location}
+              phoneNumber={phoneNumber}
+            />
+          }
+          fileName="descuento-acipmar.pdf"
+        >
+          {({ blob, url, loading, error }) =>
+            loading ? (
+              "Cargando cupón..."
+            ) : (
+              <div className={styles.buttonWrapper}>
+                <button className={styles.discountButton}>¡DESCARGAR DESCUENTO!</button>
+              </div>
+            )
+          }
+        </PDFDownloadLink>
+      );
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
   return (
     <article className={styles.root}>
       {props.mainImage && mainImage.asset && (
@@ -68,27 +100,7 @@ function Project(props) {
                 <div className={styles.discountWrapper}>
                   <h2>Descuento</h2>
                   <p className={styles.discountMsg}>{discount}</p>
-                  <PDFDownloadLink
-                    document={
-                      <DiscountPDF
-                        discount={discount}
-                        businessName={title}
-                        location={location}
-                        phoneNumber={phoneNumber}
-                      />
-                    }
-                    fileName="descuento-acipmar.pdf"
-                  >
-                    {({ blob, url, loading, error }) =>
-                      loading ? (
-                        "Cargando cupón..."
-                      ) : (
-                        <div className={styles.buttonWrapper}>
-                          <button className={styles.discountButton}>¡DESCARGAR DESCUENTO!</button>
-                        </div>
-                      )
-                    }
-                  </PDFDownloadLink>
+                  {downloadLink}
                 </div>
               </>
             )}
