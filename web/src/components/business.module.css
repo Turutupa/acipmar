@@ -101,3 +101,58 @@
 .icon {
   margin-right: 15%;
 }
+
+.discountWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.discountMsg {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin: 5px auto;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.discountButton {
+  cursor: pointer;
+  padding: 15px 25px;
+  margin-top: 20px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  display: block;
+  font-size: 1rem;
+  border: none;
+  outline: none !important;
+}
+
+.discountButton:hover {
+  background-color: rgb(50, 50, 50);
+}
+
+.returnButton {
+  cursor: pointer;
+  padding: 15px 25px;
+  margin-top: 20px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  display: block;
+  font-size: 1rem;
+  border: none;
+  outline: none !important;
+  text-align: center;
+}
+
+.returnButton:hover {
+  background-color: rgb(50, 50, 50);
+}

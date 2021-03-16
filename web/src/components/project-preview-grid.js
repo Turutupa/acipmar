@@ -10,7 +10,7 @@ function ProjectPreviewGrid(props) {
 
   return (
     <div className={styles.root}>
-      {props.title && <h1 className={styles.headline}>{props.title}</h1>}
+      {!showAll && props.title && <h1 className={styles.headline}>{props.title}</h1>}
       <ul className={styles.grid}>
         {props.nodes &&
           props.nodes.slice(0, showAll ? props.nodes.length : numberOfPreviewedItems).map(node => (

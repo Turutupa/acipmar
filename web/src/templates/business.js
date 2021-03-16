@@ -15,6 +15,7 @@ export const query = graphql`
       facebook
       instagram
       phoneNumber
+      discount
       categories {
         _id
         title
