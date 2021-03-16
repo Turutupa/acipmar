@@ -78,9 +78,9 @@ const CategoryTemplate = props => {
   const category = pageContext.category;
 
   return (
-    <Layout navigate={() => navigate("/")}>
+    <Layout navigate={() => navigate("/")} title={category}>
       {errors && <SEO title="GraphQL Error" />}
-      {business && <SEO title={business.title || "Untitled"} />}
+      {business && <SEO title={category} />}
       {errors && (
         <Container>
           <GraphQLErrorList errors={errors} />
