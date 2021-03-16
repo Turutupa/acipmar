@@ -1,15 +1,13 @@
 import React from "react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
-import FuzzyPicker from "react-fuzzy-picker";
 import styles from "../styles/index.module.css";
-import container from "./layout.module.css";
 import { navigate } from "gatsby-link";
 
 const animatedComponents = makeAnimated();
 
 export default function Search(props) {
-  const { category, selectValues, fuzzyValues } = props;
+  const { category, selectValues } = props;
   return (
     <div>
       {category && <h1>{category}</h1>}
@@ -33,8 +31,18 @@ export default function Search(props) {
             }}
           />
         </div>
+      </div>
+      {category !== "Mostrar todas categorías" && (
+        <div onClick={() => navigate("/")} className={styles.showAllButton}>
+          Mostrar todas las categorías
+        </div>
+      )}
+    </div>
+  );
+}
 
-        {/* <div className={styles.searchWrapper}>
+{
+  /* <div className={styles.searchWrapper}>
           <label style={{ fontWeight: "bold" }}>Buscar por nombre</label>
 
           <FuzzyPicker
@@ -55,8 +63,5 @@ export default function Search(props) {
             items={fuzzyValues}
             placeholder="Buscar negocio"
           />
-        </div> */}
-      </div>
-    </div>
-  );
+        </div> */
 }

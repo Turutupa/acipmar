@@ -124,7 +124,7 @@
 
 .discountButton {
   cursor: pointer;
-  padding: 15px 25px;
+  padding: 18px;
   margin-top: 20px;
   background-color: black;
   color: white;
@@ -133,6 +133,7 @@
   font-size: 1rem;
   border: none;
   outline: none !important;
+  width: 100%;
 }
 
 .discountButton:hover {

@@ -13,7 +13,6 @@
 
 .selectWrapper {
   width: 100%;
-  margin-right: 10px;
   position: relative;
 }
 
@@ -27,6 +26,7 @@
 }
 
 .showAllButton {
+  display: block;
   box-sizing: border-box;
   cursor: pointer;
   background-color: #f9558f;
