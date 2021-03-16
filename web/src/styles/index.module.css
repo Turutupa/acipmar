@@ -37,3 +37,7 @@
   width: 100%;
   text-align: center;
 }
+
+.showAllButton:hover {
+  filter: brightness(1.2);
+}
