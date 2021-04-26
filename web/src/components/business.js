@@ -1,24 +1,21 @@
-import React from "react";
-import { Link, navigate } from "gatsby";
-import { buildImageObj, phoneNumberBuilder } from "../lib/helpers";
-import { imageUrlFor } from "../lib/image-url";
-import BlockContent from "./block-content";
-import Container from "./container";
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import DiscountPDF from "./discount-pdf";
-import { IoMdReturnLeft } from "react-icons/io";
-
+import { Link, navigate } from "gatsby";
+import React from "react";
 import {
   AiFillFacebook,
   AiFillInstagram,
+  AiFillPhone,
   AiFillTwitterCircle,
-  AiOutlineWhatsApp,
-  AiFillPhone
+  AiOutlineWhatsApp
 } from "react-icons/ai";
-
+import { IoMdReturnLeft } from "react-icons/io";
 import { MdLocationOn } from "react-icons/md";
-
+import { buildImageObj, phoneNumberBuilder } from "../lib/helpers";
+import { imageUrlFor } from "../lib/image-url";
+import BlockContent from "./block-content";
 import styles from "./business.module.css";
+import Container from "./container";
+import DiscountPDF from "./discount-pdf";
 
 const smIcons = {
   twitter: AiFillTwitterCircle,
@@ -106,15 +103,17 @@ function Project(props) {
             )}
           </div>
           <aside className={styles.metaContent}>
-            {location && (
-              <div className={styles.relatedProjects}>
-                <h3 className={styles.relatedProjectsHeadline}>Dirección</h3>
-                <p>
-                  {icon(MdLocationOn)}
-                  {location}
-                </p>
-              </div>
-            )}
+            <Link>
+              {location && (
+                <div className={styles.relatedProjects}>
+                  <h3 className={styles.relatedProjectsHeadline}>Dirección</h3>
+                  <p>
+                    {icon(MdLocationOn)}
+                    {location}
+                  </p>
+                </div>
+              )}
+            </Link>
             {phoneNumber && (
               <div className={styles.relatedProjects}>
                 <h3 className={styles.relatedProjectsHeadline}>Información de contacto</h3>
