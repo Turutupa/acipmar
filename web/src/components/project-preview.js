@@ -1,11 +1,8 @@
 import { Link } from "gatsby";
-import React from "react";
-import { cn, buildImageObj } from "../lib/helpers";
-import { imageUrlFor } from "../lib/image-url";
-import BlockText from "./block-text";
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-
+import React from "react";
+import { buildImageObj, cn } from "../lib/helpers";
+import { imageUrlFor } from "../lib/image-url";
 import styles from "./project-preview.module.css";
 import { responsiveTitle3 } from "./typography.module.css";
 
@@ -29,6 +26,7 @@ function ProjectPreview(props) {
           <p>{props.excerpt}</p>
         </div>
       )}
+      <p className={styles.discount}>{props.discount}</p>
     </Link>
   );
 }

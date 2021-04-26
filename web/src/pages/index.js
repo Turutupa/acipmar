@@ -1,19 +1,18 @@
-import React from "react";
 import { graphql, navigate } from "gatsby";
-import {
-  mapEdgesToNodes,
-  filterOutDocsWithoutSlugs,
-  filterOutDocsPublishedInTheFuture,
-  groupBusinessesByCategories
-} from "../lib/helpers";
+import React from "react";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import ProjectPreviewGrid from "../components/project-preview-grid";
+import Search from "../components/search";
 import SEO from "../components/seo";
 import Layout from "../containers/layout";
-import Search from "../components/search";
 import { defaultCategory } from "../lib/constants";
-
+import {
+  filterOutDocsPublishedInTheFuture,
+  filterOutDocsWithoutSlugs,
+  groupBusinessesByCategories,
+  mapEdgesToNodes
+} from "../lib/helpers";
 import "../styles/fuzzy-picker.css";
 
 export const query = graphql`
@@ -53,6 +52,7 @@ export const query = graphql`
           }
           title
           excerpt
+          discount
           slug {
             current
           }
@@ -82,14 +82,13 @@ const IndexPage = props => {
 
   const businessesByCategories = groupBusinessesByCategories(businesses);
   const businessCategories = Object.keys(businessesByCategories);
+
   // values for the select input
   const selectValues = businessCategories.map(category => ({
     value: category.toLowerCase(),
     label: category
   }));
   selectValues.unshift(defaultCategory);
-  // values for the fuzzy picker
-  const fuzzyValues = businesses.map(business => business.title);
 
   if (!site) {
     throw new Error(
@@ -105,7 +104,6 @@ const IndexPage = props => {
           category={defaultCategory.label}
           defaultCategory={defaultCategory}
           selectValues={selectValues}
-          fuzzyValues={fuzzyValues}
         />
 
         {businessesByCategories && renderBusinesessByCategory(businessesByCategories)}

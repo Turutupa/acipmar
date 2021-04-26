@@ -1,12 +1,11 @@
-import React from "react";
 import { graphql, navigate } from "gatsby";
+import React from "react";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
-import SEO from "../components/seo";
-import Layout from "../containers/layout";
 import ProjectPreviewGrid from "../components/project-preview-grid";
 import Search from "../components/search";
-
+import SEO from "../components/seo";
+import Layout from "../containers/layout";
 import { defaultCategory } from "../lib/constants";
 
 export const query = graphql`
@@ -25,6 +24,7 @@ export const query = graphql`
           id
           title
           excerpt
+          discount
           slug {
             current
           }

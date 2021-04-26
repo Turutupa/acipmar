@@ -2,10 +2,19 @@
   display: block;
   color: inherit;
   text-decoration: none;
+  transition: all 0.2s linear;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgb(0, 0, 0, 0.15), 0 5px 10px rgb(0, 0, 0, 0.15);
+
+  &:hover {
+    transform: translateY(-12px);
+  }
 }
 
 .title {
   composes: responsiveTitle1 from "./typography.module.css";
+  height: 50px;
 }
 
 .leadMediaThumb {
@@ -24,6 +33,8 @@
 }
 
 .title {
+  padding-left: 15px;
+  padding-right: 15px;
   @media (hover: hover) {
     @nest .root:hover & {
       text-decoration: underline;
@@ -33,9 +44,12 @@
 
 .excerpt {
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  height: 150px;
+  padding-left: 15px;
+  padding-right: 15px;
 
   @nest & p {
     margin: 0.5em 0;
@@ -44,4 +58,14 @@
   @nest & strong {
     font-weight: 600;
   }
+}
+
+.discount {
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  padding: 15px 10px;
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 0;
 }
