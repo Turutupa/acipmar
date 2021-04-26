@@ -103,24 +103,26 @@ function Project(props) {
             )}
           </div>
           <aside className={styles.metaContent}>
-            <Link>
-              {location && (
-                <div className={styles.relatedProjects}>
-                  <h3 className={styles.relatedProjectsHeadline}>Dirección</h3>
+            {location && (
+              <div className={styles.relatedProjects}>
+                <h3 className={styles.relatedProjectsHeadline}>Dirección</h3>
+                <Link to={`https://maps.google.com/maps?q=${location}`} target="_blank">
                   <p>
                     {icon(MdLocationOn)}
                     {location}
                   </p>
-                </div>
-              )}
-            </Link>
+                </Link>
+              </div>
+            )}
             {phoneNumber && (
               <div className={styles.relatedProjects}>
                 <h3 className={styles.relatedProjectsHeadline}>Información de contacto</h3>
-                <p>
-                  {icon(AiFillPhone)}
-                  {phoneNumberBuilder(phoneNumber)}
-                </p>
+                <Link href={`tel:${phoneNumber}`}>
+                  <p>
+                    {icon(AiFillPhone)}
+                    {phoneNumberBuilder(phoneNumber)}
+                  </p>
+                </Link>
               </div>
             )}
             {(twitter || facebook || instagram) && (
